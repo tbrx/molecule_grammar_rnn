@@ -4,17 +4,17 @@ David Janz, Jos van der Westhuizen, Brooks Paige, Matt Kusner and José Miguel H
 Steps to reproduce results in table 4:
 
 1) Install requirements.
-rdkit (chemical informatics, http://www.rdkit.org/docs/Install.html) can be tricky; we recommend using Anaconda.
-Note: the project uses pytorch 0.3.1, later versions are not backward compatible and will not run.
+rdkit (chemical informatics, http://www.rdkit.org/docs/Install.html) can be tricky; we recommend using Anaconda (e.g. `conda install -c rdkit rdkit`).
+Note: the project uses python 3, and is not compatible with python 2.
 
 2) First prepare data by running
-python3 data data/zinc.smi
+`python -m data data/zinc.smi`
 
 3) Generate samples from pretrained VAE for testing the grammar model. See optional) for training your own VAE.
-python3 vae --restore vae-pretrained --generate-samples
+`python -m vae --restore vae-pretrained --generate-samples`
 
 4) Train grammar_rnn model, the main paper contribution. This takes approximately ten minutes.
-python3 grammar_model
+`python -m grammar_model`
 
 Results are displayed to terminal + plotted to tensorboard (default location /tmp/models)
 
@@ -28,5 +28,5 @@ Citation bibtex:
 }
 
 Optional: Train your own character VAE for molecules. Enclosed implementation beats the original. Training takes a couple hours.
-If you get a cuda out of memory error, consider reducing --batch-size (defaults at 500).
-python3 vae
+If you get a cuda out of memory error, consider reducing `--batch-size` (defaults at 500).
+`python -m vae`
